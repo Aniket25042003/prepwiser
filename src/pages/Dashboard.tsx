@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { supabase, InterviewSession, CodingSession } from '../lib/supabase'
@@ -7,7 +7,7 @@ import { analytics } from '../lib/analytics'
 import { DashboardStats } from './DashboardStats'
 import { MockInterview } from './MockInterview'
 import { CodePractice } from './CodePractice'
-import { BarChart3, MessageSquare, Code2, Sparkles, User, LogOut } from 'lucide-react'
+import { BarChart3, MessageSquare, Code2, Sparkles, User, LogOut, FileText, FileSearch } from 'lucide-react'
 
 const codingPlatforms = [
   {
@@ -70,6 +70,8 @@ export function Dashboard() {
     if (path === '/mock-interview') return 'mock-interview'
     if (path === '/coding-practice') return 'coding-practice'
     if (path === '/qa-session') return 'qa-session'
+    if (path === '/resume-builder') return 'resume-builder'
+    if (path === '/resume-analyzer') return 'resume-analyzer'
     return 'dashboard' // default
   })
   const [formData, setFormData] = useState({
@@ -91,6 +93,8 @@ export function Dashboard() {
     if (path === '/mock-interview') setActiveTab('mock-interview')
     else if (path === '/coding-practice') setActiveTab('coding-practice')
     else if (path === '/qa-session') setActiveTab('qa-session')
+    else if (path === '/resume-builder') setActiveTab('resume-builder')
+    else if (path === '/resume-analyzer') setActiveTab('resume-analyzer')
     else if (path === '/dashboard') setActiveTab('dashboard')
   }, [location.pathname])
 
@@ -251,6 +255,18 @@ export function Dashboard() {
       label: 'Q&A Practice',
       icon: Sparkles,
       description: 'Upload resume and job description for personalized Q&A practice'
+    },
+    {
+      id: 'resume-builder',
+      label: 'Resume Builder',
+      icon: FileText,
+      description: 'Build your resume from scratch by inserting your details'
+    },
+    {
+      id: 'resume-analyzer',
+      label: 'Resume Analyzer',
+      icon: FileSearch,
+      description: 'Analyze your resume against job descriptions and get improvement suggestions'
     }
   ]
 
@@ -462,6 +478,210 @@ export function Dashboard() {
                     >
                       <div className="flex items-center justify-center space-x-2">
                         <Sparkles className="h-5 w-5" />
+                        <span>Coming Soon - Stay Tuned!</span>
+                      </div>
+                    </StarBorder>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'resume-builder' && (
+            <div className="space-y-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold mb-4 text-gradient">Resume Builder</h2>
+                <p className="text-slate-400 mb-8">Build your professional resume from scratch by simply inserting your details</p>
+              </div>
+
+              <div className="glass-strong rounded-2xl p-8 border border-slate-700/30 card-3d animate-fade-in">
+                <div className="text-center space-y-6">
+                  <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto flex items-center justify-center">
+                    <FileText className="h-12 w-12 text-white" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Coming Soon!</h3>
+                    <p className="text-slate-300 text-lg mb-6">
+                      We're building an intuitive resume builder that will help you create professional resumes effortlessly.
+                    </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-6 text-left">
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">1</span>
+                        </div>
+                        <h4 className="font-semibold text-white">Enter Your Details</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm ml-11">
+                        Simply fill in your personal information, work experience, education, and skills through an easy-to-use form.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">2</span>
+                        </div>
+                        <h4 className="font-semibold text-white">Choose Template</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm ml-11">
+                        Select from a variety of professional resume templates designed for different industries and roles.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">3</span>
+                        </div>
+                        <h4 className="font-semibold text-white">Generate & Download</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm ml-11">
+                        Our AI will format your information into a polished resume that you can download in PDF format.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 p-6 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-xl border border-green-500/20">
+                    <h4 className="text-lg font-semibold text-white mb-3">What to Expect</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>Step-by-step guided form to input all your information</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>Multiple professional templates to choose from</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>AI-powered formatting and optimization</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>Real-time preview of your resume</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>Export to PDF with one click</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="mt-6">
+                    <StarBorder
+                      as="button"
+                      disabled
+                      className="w-full opacity-50 cursor-not-allowed"
+                      
+                    >
+                      <div className="flex items-center justify-center space-x-2">
+                        <FileText className="h-5 w-5" />
+                        <span>Coming Soon - Stay Tuned!</span>
+                      </div>
+                    </StarBorder>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'resume-analyzer' && (
+            <div className="space-y-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold mb-4 text-gradient">Resume Analyzer</h2>
+                <p className="text-slate-400 mb-8">Analyze your resume against job descriptions and get personalized improvement suggestions</p>
+              </div>
+
+              <div className="glass-strong rounded-2xl p-8 border border-slate-700/30 card-3d animate-fade-in">
+                <div className="text-center space-y-6">
+                  <div className="w-24 h-24 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mx-auto flex items-center justify-center">
+                    <FileSearch className="h-12 w-12 text-white" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Coming Soon!</h3>
+                    <p className="text-slate-300 text-lg mb-6">
+                      We're developing an AI-powered resume analyzer that will help you optimize your resume for specific job applications.
+                    </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-6 text-left">
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">1</span>
+                        </div>
+                        <h4 className="font-semibold text-white">Upload Your Resume</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm ml-11">
+                        Upload the resume you're using to apply for the job. We support PDF, DOC, and DOCX formats.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">2</span>
+                        </div>
+                        <h4 className="font-semibold text-white">Provide Job Description</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm ml-11">
+                        Paste or upload the job description for the position you're applying to. Our AI will analyze the requirements.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">3</span>
+                        </div>
+                        <h4 className="font-semibold text-white">Get Analysis & Score</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm ml-11">
+                        Receive a matching score and detailed suggestions to improve your resume and increase your chances of selection.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 p-6 bg-gradient-to-r from-orange-500/10 to-purple-500/10 rounded-xl border border-orange-500/20">
+                    <h4 className="text-lg font-semibold text-white mb-3">What to Expect</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-400 mt-1">•</span>
+                        <span>Comprehensive matching score (0-100%) showing how well your resume aligns with the job</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-400 mt-1">•</span>
+                        <span>Keyword analysis to identify missing important terms from the job description</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-400 mt-1">•</span>
+                        <span>Skill gap identification and recommendations</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-400 mt-1">•</span>
+                        <span>Specific improvement suggestions for each section of your resume</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-400 mt-1">•</span>
+                        <span>Actionable tips to increase your chances of getting selected for the next round</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="mt-6">
+                    <StarBorder
+                      as="button"
+                      disabled
+                      className="w-full opacity-50 cursor-not-allowed"
+                      
+                    >
+                      <div className="flex items-center justify-center space-x-2">
+                        <FileSearch className="h-5 w-5" />
                         <span>Coming Soon - Stay Tuned!</span>
                       </div>
                     </StarBorder>

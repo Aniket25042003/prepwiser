@@ -62,6 +62,22 @@ function AppContent() {
         } 
       />
       <Route 
+        path="/resume-builder" 
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/resume-analyzer" 
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
         path="/chat" 
         element={
           <ProtectedRoute>
