@@ -345,12 +345,16 @@ export function DashboardStats({
                 dataKey="count" 
                 fill="url(#barGradient)" 
                 radius={[6, 6, 0, 0]}
-                activeBar={{ fill: "url(#barGradient)" }}
+                activeBar={{ fill: "url(#barGradientActive)" }}
               />
               <defs>
                 <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#131445" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#2e2f76" stopOpacity={0.6}/>
+                  <stop offset="5%" stopColor="#a78bfa" stopOpacity={1}/>
+                  <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.8}/>
+                </linearGradient>
+                <linearGradient id="barGradientActive" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#c4b5fd" stopOpacity={1}/>
+                  <stop offset="95%" stopColor="#a78bfa" stopOpacity={0.9}/>
                 </linearGradient>
               </defs>
             </BarChart>
