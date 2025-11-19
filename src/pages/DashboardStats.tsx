@@ -1,4 +1,3 @@
-import React from 'react'
 import { Clock, Trash2, Calendar, BookOpen, Play, Award, Zap, Code, Target, User, TrendingUp } from 'lucide-react'
 import { InterviewSession } from '../lib/supabase'
 import { 
@@ -136,7 +135,7 @@ export function DashboardStats({
         <div className="glass-strong rounded-lg p-3 border border-slate-700/30 backdrop-blur-sm">
           <p className="text-white font-medium">{label}</p>
           {payload.map((entry, index: number) => (
-            <p key={index} style={{ color: entry.color }}>
+            <p key={index} style={{ color: entry.color || '#a78bfa' }}>
               {entry.name}: {entry.value}
             </p>
           ))}
@@ -290,14 +289,14 @@ export function DashboardStats({
                 <Area 
                   type="monotone" 
                   dataKey="interviews" 
-                  stroke="#131445" 
+                  stroke="#a78bfa" 
                   fill="url(#performanceGradient)" 
                   strokeWidth={3}
                 />
                 <defs>
                   <linearGradient id="performanceGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#131445" stopOpacity={0.4}/>
-                    <stop offset="95%" stopColor="#131445" stopOpacity={0.1}/>
+                    <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1}/>
                   </linearGradient>
                 </defs>
               </AreaChart>
